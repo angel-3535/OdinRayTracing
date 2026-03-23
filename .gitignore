@@ -1,8 +1,4 @@
-.ppm
-.jpeg
-.jpg
-.png
-
+*.ppm
 
 # User-specific files
 *.suo
