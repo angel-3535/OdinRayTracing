@@ -6,3 +6,8 @@ color :: [3]f64
 icolor :: [3]int
 
 ucolor_8 :: [3]u8
+
+sphere :: struct {
+	center: point3,
+	radius: f64,
+}
