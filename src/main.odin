@@ -7,7 +7,7 @@ import r "vendor:raylib"
 
 main :: proc() {
 	r.SetConfigFlags({.WINDOW_RESIZABLE, .MSAA_4X_HINT})
-	r.InitWindow(800, 600, "Odin Ray Tracer")
+	r.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
 	defer r.CloseWindow()
 	r.SetTargetFPS(60)
 
