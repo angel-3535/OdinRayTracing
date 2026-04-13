@@ -14,6 +14,9 @@ main :: proc() {
 	imgui.CreateContext()
 	defer imgui.DestroyContext()
 
+	io := imgui.GetIO()
+	io.ConfigFlags |= {.DockingEnable}
+
 	imgui_rl.init()
 	defer imgui_rl.shutdown()
 

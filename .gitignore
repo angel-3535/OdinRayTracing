@@ -1,5 +1,6 @@
 *.ppm
 *.png
+imgui.ini
 
 # User-specific files
 *.suo

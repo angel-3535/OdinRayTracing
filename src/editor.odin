@@ -1,9 +1,11 @@
 package main
 
-import "core:fmt"
 import imgui "../vendor/odin-imgui"
+import "core:fmt"
 
 render_editor :: proc() {
+	imgui.DockSpaceOverViewport()
+
 	if imgui.Begin("Editor") {
 		imgui.Text("Hello from Dear ImGui.")
 
