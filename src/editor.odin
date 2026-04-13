@@ -1,7 +1,9 @@
 package main
 
+import imgui_rl "../imgui_impl_raylib"
 import imgui "../vendor/odin-imgui"
 import "core:fmt"
+import r "vendor:raylib"
 
 WINDOW_TITLE :: "Odin Ray Tracer - Editor"
 WINDOW_WIDTH :: 1280
@@ -11,6 +13,50 @@ SCENE_WINDOW_TITLE :: "Editor"
 VIEWPORT_WINDOW_TITLE :: "Viewport"
 EDITOR_DOCKSPACE_ID :: "EditorDockSpace"
 
+
+init_editor :: proc() {
+	r.SetConfigFlags({.WINDOW_RESIZABLE, .MSAA_4X_HINT})
+	r.InitWindow(WINDOW_WIDTH, WINDOW_HEIGHT, WINDOW_TITLE)
+	r.SetTargetFPS(60)
+
+	imgui.CreateContext()
+
+	io := imgui.GetIO()
+	io.ConfigFlags |= {.DockingEnable}
+
+	imgui_rl.init()
+
+	if err := imgui_rl.build_font_atlas(); err != nil {
+		fmt.eprintf("failed to build Dear ImGui font atlas: %v\n", err)
+		return
+	}
+}
+destroy_editor :: proc() {
+	//dont change order
+	imgui_rl.shutdown()
+	imgui.DestroyContext()
+	r.CloseWindow()
+}
+
+editor_loop :: proc() {
+	for !r.WindowShouldClose() {
+		imgui_rl.process_events()
+		imgui_rl.new_frame()
+		imgui.NewFrame()
+
+		render_editor()
+
+		r.BeginDrawing()
+		r.ClearBackground(r.RAYWHITE)
+
+		imgui.Render()
+		imgui_rl.render_draw_data(imgui.GetDrawData())
+
+		r.EndDrawing()
+	}
+}
+
+@(private)
 initialize_editor_layout :: proc(dockspace_id: imgui.ID) {
 
 	// init docking layout

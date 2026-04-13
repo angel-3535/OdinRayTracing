@@ -10,10 +10,6 @@ icolor :: [3]int
 
 ucolor_8 :: [3]u8
 
-sphere :: struct {
-	center: point3,
-	radius: f64,
-}
 
 print_vec :: proc(v: $T/[$N]$E) {
 	fmt.print("[")
