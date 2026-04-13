@@ -1,8 +1,8 @@
 package main
 
-import "core:fmt"
+import imgui_rl "../imgui_impl_raylib"
 import imgui "../vendor/odin-imgui"
-import imgui_rl "../vendor/odin-imgui/imgui_impl_raylib"
+import "core:fmt"
 import r "vendor:raylib"
 
 main :: proc() {
