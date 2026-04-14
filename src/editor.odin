@@ -78,6 +78,8 @@ initialize_editor_layout :: proc(dockspace_id: imgui.ID) {
 }
 
 first_render := true
+has_generated_image := false
+
 render_editor :: proc() {
 	dockspace_id := imgui.GetID(EDITOR_DOCKSPACE_ID)
 	imgui.DockSpaceOverViewport(dockspace_id)
@@ -94,9 +96,17 @@ render_editor :: proc() {
 
 	if imgui.Begin(SCENE_WINDOW_TITLE) {
 		imgui.Text("Hello from Dear ImGui.")
-
 		if imgui.Button("Print Hello") {
 			fmt.println("hello world")
+		}
+		if imgui.Button("Generate Image") {
+			generate_image()
+			has_generated_image = true
+		}
+		if has_generated_image {
+			imgui.Text("Generated output.png")
+		} else {
+			imgui.Text("No image generated yet.")
 		}
 	}
 	imgui.End()

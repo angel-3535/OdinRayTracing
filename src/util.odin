@@ -1,5 +1,7 @@
 package main
 
+import "core:fmt"
+
 point3 :: [3]f64
 vec3 :: [3]f64
 vec2 :: [2]f64
